@@ -21,43 +21,6 @@ The project clock must be 96 MHz: `main.c` assumes a 24 MHz peripheral clock (`P
 
 The single-digit display shows the waveform number (1–4); the TM1637 display shows frequency in Hz. Startup is sine at 100 Hz, with amplitude set by the potentiometer. Frequency stepping stops at the ends of the list.
 
-## Serial (UART)
-
-Connect the mbed board through its USB connector and open its USB serial port at **9600 baud, 8 data bits, no parity, 1 stop bit (8N1), no flow control**. The firmware uses UART0 (`P0.2` TX / `P0.3` RX), connected to the mbed USB interface; these are not the external `p9`/`p10` serial pins. See the [mbed schematic](https://www.nxp.com/downloads/en/design-support/ARM_mbed_LPC1768_Schematic.pdf).
-
-### Windows (PowerShell)
-
-With Python 3 installed, install pySerial and list the available ports:
-
-```powershell
-py -m pip install --user pyserial
-py -m serial.tools.list_ports -v
-```
-
-Replace `COM3` with the board's port from the list, then connect:
-
-```powershell
-py -m serial.tools.miniterm COM3 9600 --parity N --eol CRLF
-```
-
-### macOS (Terminal)
-
-With Python 3 installed, create a small environment, install pySerial, and list ports:
-
-```sh
-python3 -m venv .uart-env
-source .uart-env/bin/activate
-python -m pip install pyserial
-python -m serial.tools.list_ports -v
-```
-
-Replace `/dev/cu.usbmodem1234` with the board's actual `/dev/cu.*` device, then connect:
-
-```sh
-python -m serial.tools.miniterm /dev/cu.usbmodem1234 9600 --parity N --eol CRLF
-```
-
-On either system, type a command below in miniterm and press **Enter**. Exit with **Ctrl + ]**. Local echo stays off because the firmware echoes input. Port listing and terminal options follow the [pySerial documentation](https://pyserial.readthedocs.io/en/latest/tools.html).
 
 | UART command | Action |
 | --- | --- |
@@ -104,16 +67,15 @@ The code also accepts `+` / `-` for frequency stepping and `H` for help. Letter 
 
 ## Demo Photos
 
-![Demo 2](photos/demo-2.jpg)
 
-![Demo 3](photos/demo-3.jpg)
+![Demo 3](demo-3.jpg)
 
-![Demo 4](photos/demo-4.jpg)
+![Demo 4](demo-4.jpg)
 
-![Demo 5](photos/demo-5.jpg)
+![Demo 5](demo-5.jpg)
 
-![Demo 6](photos/demo-6.jpg)
+![Demo 6](demo-6.jpg)
 
-![Demo 7](photos/demo-7.jpg)
+![Demo 7](demo-7.jpg)
 
-![Demo 8](photos/demo-8.jpg)
+![Demo 8](demo-8.jpg)
